@@ -1,4 +1,5 @@
 import { DUMMY_NEWS } from "@/public/dummy-news";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import React, { Fragment } from "react";
 
@@ -13,7 +14,12 @@ const InterceptedImagePage = ({ params: { slug } }: Props) => {
       <div className="modal-backdrop" />
       <dialog className="modal" open>
         <div className="fullscreen-image">
-          <img src={`/images/news/${newsItem?.image}`} alt={newsItem?.title} />
+          <Link href={`/news/${newsItem.slug}/image`}>
+            <img
+              src={`/images/news/${newsItem?.image}`}
+              alt={`${newsItem?.title}`}
+            />
+          </Link>{" "}
         </div>
       </dialog>
     </Fragment>
