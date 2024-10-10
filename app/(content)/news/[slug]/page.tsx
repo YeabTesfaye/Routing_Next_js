@@ -1,4 +1,4 @@
-import { DUMMY_NEWS } from "@/public/dummy-news";
+import { getNewsItem } from "@/lib/news";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -6,9 +6,7 @@ interface Props {
   params: { slug: string };
 }
 const NewsDetailPage = ({ params: { slug } }: Props) => {
-  const newsItem = DUMMY_NEWS.find((newsItem) => {
-    return newsItem.slug == slug;
-  });
+  const newsItem = getNewsItem(slug);
   if (!newsItem) notFound();
   return (
     <article className="news-article">

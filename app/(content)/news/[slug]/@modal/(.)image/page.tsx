@@ -1,20 +1,19 @@
-"use client";
 import Link from "next/link";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import React, { Fragment } from "react";
-import { DUMMY_NEWS } from "@/public/dummy-news";
+import ModalaBackDrop from "@/components/modal-backdrop";
+import { getNewsItem } from "@/lib/news";
 
 interface Props {
   params: { slug: string };
 }
 const InterceptedImagePage = ({ params: { slug } }: Props) => {
-  const router = useRouter();
-  const newsItem = DUMMY_NEWS.find((newsItem) => newsItem.slug === slug);
+  const newsItem = getNewsItem(slug);
   if (!newsItem) notFound();
 
   return (
     <Fragment>
-      <div className="modal-backdrop" onClick={router.back} />
+      <ModalaBackDrop />
       <dialog className="modal" open>
         <div className="fullscreen-image">
           <Link href={`/news/${newsItem.slug}/image`}>

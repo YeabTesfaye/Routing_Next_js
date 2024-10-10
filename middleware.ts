@@ -5,7 +5,6 @@ export function middleware(request: NextRequest) {
   //   if (url.pathname == "/news") {
   //     return NextResponse.redirect(new URL("/archive", request.url));
   //   }
-  console.log(url);
   return NextResponse.next();
 }
 

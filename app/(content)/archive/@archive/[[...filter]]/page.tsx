@@ -7,7 +7,7 @@ import {
 } from "@/lib/news";
 import { NEW } from "@/public/dummy-news";
 import Link from "next/link";
-import React, { Fragment } from "react";
+import  { Fragment } from "react";
 
 interface Props {
   params: { filter?: number[] };
@@ -18,8 +18,7 @@ const FilteredNewsPage = ({ params }: Props) => {
   const selectedYear: number | undefined = filter ? filter[0] : undefined;
   const selectedMonth: number | undefined = filter ? filter[1] : undefined;
   let news: NEW[] = [];
-  let links: number[] = getAvailableNewsYears();
-
+  let links: string[] = getAvailableNewsYears();
   if (selectedYear && !selectedMonth) {
     news = getNewsForYear(selectedYear) || [];
     links = getAvailableNewsMonths(selectedYear);
@@ -32,7 +31,6 @@ const FilteredNewsPage = ({ params }: Props) => {
   if (news && news?.length > 0) {
     newsContent = <NewsList news={news} />;
   }
-
 
   return (
     <Fragment>
